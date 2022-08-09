@@ -17,7 +17,7 @@
                             <div class="col-md-6">
                                 <input id="password-old" type="password" class="form-control @error('password_old') is-invalid @enderror" name="password_old" required autocomplete="current-password">
 
-                                @error('password-old')
+                                @error('password_old')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
