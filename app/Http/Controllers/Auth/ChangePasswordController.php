@@ -67,15 +67,9 @@ class ChangePasswordController extends Controller
 
         $password = $request->input('password');
 
-        // Here we will attempt to reset the user's password. If it is successful we
-        // will update the password on an actual user model and persist it to the
-        // database. Otherwise we will parse the error and return the response.
         $this->updatePassword($user, $password);
 
-        // If the password was successfully reset, we will redirect the user back to
-        // the application's home authenticated view. If there is an error we can
-        // redirect them back to where they came from with their error message.
-        return redirect($this->redirectTo)
+       return redirect($this->redirectTo)
                             ->with('status', trans('passwords.changed'));
     }
 
@@ -93,7 +87,7 @@ class ChangePasswordController extends Controller
     }
 
     /**
-     * Get the password reset validation error messages.
+     * Get the password update validation error messages.
      *
      * @return array
      */
@@ -103,7 +97,7 @@ class ChangePasswordController extends Controller
     }
 
     /**
-     * Reset the given user's password.
+     * Set the current user's password and save.
      *
      * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
      * @param  string  $password
@@ -111,23 +105,11 @@ class ChangePasswordController extends Controller
      */
     protected function updatePassword($user, $password)
     {
-        $this->setUserPassword($user, $password);
+        $user->password = Hash::make($password);
 
         $user->setRememberToken(Str::random(60));
 
         $user->save();
-    }
-
-    /**
-     * Set the user's password.
-     *
-     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
-     * @param  string  $password
-     * @return void
-     */
-    protected function setUserPassword($user, $password)
-    {
-        $user->password = Hash::make($password);
     }
 
 }
