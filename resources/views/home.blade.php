@@ -15,6 +15,10 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    @admin
+                        {{ __('Welcom admin')}}
+                    @endadmin
                 </div>
             </div>
         </div>
