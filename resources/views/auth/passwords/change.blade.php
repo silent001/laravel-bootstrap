@@ -15,7 +15,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Old Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-old" type="password" class="form-control @error('password_old') is-invalid @enderror" name="password_old" required autocomplete="current-password">
+                                <input id="password-old" type="password" class="form-control @error('password_old') is-invalid @enderror" name="password_old" required autocomplete="current-password" autofocus>
 
                                 @error('password_old')
                                     <span class="invalid-feedback" role="alert">
