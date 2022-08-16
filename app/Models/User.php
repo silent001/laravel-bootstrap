@@ -23,6 +23,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'suspended_till',
+        'is_blocked',
+        'approved_at',
+        'role_id'        
     ];
 
     /**
@@ -42,5 +46,13 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'approved_at' => 'datetime',
+        'suspended_till' => 'datetime',
+        'is_blocked' => 'boolean',
     ];
+
+    public function role() 
+    {
+        return $this->belongsTo(Role::class);
+    }
 }

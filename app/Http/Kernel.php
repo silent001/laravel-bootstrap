@@ -2,6 +2,9 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\EnsureUserIsApproved;
+use App\Http\Middleware\EnsureUserIsNotBlocked;
+use App\Http\Middleware\EnsureUserIsNotSuspended;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -63,5 +66,9 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'approved' => \App\Http\Middleware\EnsureUserIsApproved::class,
+        'admin' => \App\Http\Middleware\EnsureRoleNotUser::class,
+        'blocked' => \App\Http\Middleware\EnsureUserIsNotBlocked::class,
+        'suspended' => \App\Http\Middleware\EnsureUserIsNotSuspended::class,
     ];
 }

@@ -7,7 +7,9 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use App\Events\Auth\PasswordChange;
+use Illuminate\Auth\Events\Verified;
 use App\Listeners\Auth\SendPasswordChangeMail;
+use App\Listeners\Admin\SendEmailApprovalNotification;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         PasswordChange::class => [
             SendPasswordChangeMail::class,
         ],
+        Verified::class => [
+            SendEmailApprovalNotification::class,
+        ]
         
     ];
 
