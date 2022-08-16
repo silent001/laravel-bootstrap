@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 use App\Providers\RouteServiceProvider;
+use App\Events\Auth\PasswordChange;
 
 class ChangePasswordController extends Controller
 {
@@ -110,6 +111,8 @@ class ChangePasswordController extends Controller
         $user->setRememberToken(Str::random(60));
 
         $user->save();
+
+        event(new PasswordChange($user));
     }
 
 }
