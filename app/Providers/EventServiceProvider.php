@@ -27,8 +27,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         Verified::class => [
             SendEmailApprovalNotification::class,
-        ]
-        
+        ]        
     ];
 
     /**
